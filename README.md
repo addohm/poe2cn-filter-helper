@@ -34,13 +34,40 @@ python3 -m poe2cn convert        # convert filters/input/** -> filters/output/**
 python3 -m poe2cn serve          # web UI at http://localhost:8753
 ```
 
-On Windows you can instead double-click:
+`convert` works out of the box — it uses the item database shipped in `data/`, so no game,
+Oodle, or Node is needed.
+
+### Commands
+
+| Command | What it does | Flags |
+| --- | --- | --- |
+| `python3 -m poe2cn convert` | Convert every source in the input folder → output folder, then copy to the game folder. | `--no-copy` (don't copy to the game folder) |
+| `python3 -m poe2cn serve` | Start the local web UI. | `--port N` (default `8753`) |
+| `python3 -m poe2cn datamine` | **Maintainer only** — re-extract the item DB after a patch (needs Node + game; see [maintainer/](maintainer/README.md)). | `--no-intl` (skip cross-over), `--force-schema` (re-download schema) |
+
+Run these from the repo root so the `poe2cn` package is importable.
+
+### Windows double-click launchers
+
+These just run the commands above inside WSL, so you never need a WSL shell:
 
 | File | Does |
 | --- | --- |
-| `Update-FilterBlade-CN.bat` | `python3 -m poe2cn convert` inside WSL |
-| `FilterBlade-CN-Tool.bat` | opens the web UI |
-| `Datamine-after-patch.bat` | maintainer: re-extract DB, then convert |
+| `Update-FilterBlade-CN.bat` | `convert` |
+| `FilterBlade-CN-Tool.bat` | `serve` + opens the browser |
+| `Datamine-after-patch.bat` | maintainer: `datamine` then `convert` |
+
+### Web UI
+
+`serve` opens a page (hover any control for an inline explanation) with three sections:
+
+1. **Item database** — status of the shipped DB. The **Refresh 国服 database** button re-runs
+   `datamine`, so it's a *maintainer* action that needs Node + the game installed; normal users can
+   ignore it and use the shipped data.
+2. **Convert filters** — every input source is listed (loose file / subfolder / zip entry) with its
+   resulting output name; tick the ones you want and click **Convert selected** (with an optional
+   "copy to game" toggle).
+3. **Cross-over report** — lists items renamed between the international and 国服 clients.
 
 ## Input layout — drop filters into `filters/input/`
 
