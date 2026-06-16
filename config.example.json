@@ -1,0 +1,7 @@
+{
+  "_comment": "Copy this to config.json and adjust paths. Windows paths (C:\\...) are auto-converted to /mnt/c/... for WSL. inputFolder/outputFolder default to ./filters/input and ./filters/output if omitted.",
+  "cnInstall": "/mnt/c/WeGameApps/rail_apps/Path of  Exile 2(2002052)",
+  "intlInstall": "/mnt/c/Program Files (x86)/Steam/steamapps/common/Path of Exile 2",
+  "gameFolder": "/mnt/c/Users/addohm/Documents/My Games/Path of Exile 2",
+  "outputSuffix": "_cn"
+}

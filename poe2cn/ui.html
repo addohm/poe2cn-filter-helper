@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>FilterBlade → 国服 Converter</title>
+<style>
+  :root{--bg:#15171c;--panel:#1e2129;--ink:#e7e9ee;--mut:#9aa3b2;--acc:#5b8def;--ok:#3fb950;--warn:#d29922;--bad:#f85149;--line:#2c313c}
+  *{box-sizing:border-box} body{margin:0;font:14px/1.5 system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+  .wrap{max-width:980px;margin:0 auto;padding:24px}
+  h1{font-size:20px;margin:0 0 4px} .sub{color:var(--mut);margin:0 0 20px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:0 0 16px}
+  .card h2{font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);margin:0 0 12px}
+  label.fld{display:block;font-size:12px;color:var(--mut);margin:8px 0 3px}
+  input[type=text]{width:100%;background:#11131a;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:7px 9px;font:13px monospace}
+  button{background:var(--acc);color:#fff;border:0;border-radius:7px;padding:9px 16px;font-weight:600;cursor:pointer}
+  button.sec{background:#2b3140;color:var(--ink)} button:disabled{opacity:.5;cursor:wait}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .ck{display:inline-flex;gap:6px;align-items:center;color:var(--ink);font-size:13px;cursor:pointer}
+  .flist{display:flex;flex-direction:column;gap:6px;margin:6px 0 14px}
+  .frow{display:flex;gap:10px;align-items:center;padding:8px 10px;background:#11131a;border:1px solid var(--line);border-radius:7px;cursor:default}
+  .frow.out{opacity:.5} .fname{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .badges{margin-left:auto;color:var(--mut);font-size:11px;white-space:nowrap}
+  pre{background:#0d0f14;border:1px solid var(--line);border-radius:7px;padding:10px;white-space:pre-wrap;font:12px/1.45 monospace;max-height:320px;overflow:auto;margin:8px 0 0}
+  .res{border-left:3px solid var(--ok);padding:10px 12px;margin:8px 0;background:#11131a;border-radius:0 7px 7px 0}
+  .res.bad{border-color:var(--bad)} .tag{font-size:11px;padding:1px 7px;border-radius:5px;font-weight:700}
+  .tag.ok{background:rgba(63,185,80,.15);color:var(--ok)} .tag.bad{background:rgba(248,81,73,.15);color:var(--bad)}
+  .tag.warn{background:rgba(210,153,34,.15);color:var(--warn)}
+  table{width:100%;border-collapse:collapse;font-size:12px} td,th{border-bottom:1px solid var(--line);padding:5px 8px;text-align:left}
+  .mut{color:var(--mut)} .mono{font-family:monospace} a{color:var(--acc)}
+  details summary{cursor:pointer;color:var(--mut)}
+  [data-tip]{cursor:help}
+  #tip{position:fixed;z-index:1000;max-width:360px;background:#0b0d12;border:1px solid var(--acc);color:var(--ink);
+       padding:9px 11px;border-radius:8px;font-size:12px;line-height:1.5;box-shadow:0 8px 28px rgba(0,0,0,.55);
+       pointer-events:none;opacity:0;transition:opacity .08s;white-space:pre-line}
+  #tip.show{opacity:1}
+</style></head>
+<body><div class="wrap">
+  <h1>FilterBlade → 国服 (China client) Converter</h1>
+  <p class="sub">Datamines the China client's item database, then rewrites a FilterBlade export so it loads without error — removing only genuinely-absent bases, case-fixing, and cross-over–remapping any renamed items by metadata Id. <span class="mut">(Hover anything for details.)</span></p>
+
+  <div class="card"><h2>1 · Item database</h2>
+    <div id="dbstatus" class="mut">loading…</div>
+    <div class="row" style="margin-top:12px">
+      <button id="btnRefresh" data-tip="Reads the China client's packed game files (Bundles2) and rebuilds the item-name whitelist that conversion checks against. Run this once after a 国服 game patch. Takes ~10–30s while bundles are decompressed. If the result looks wrong it aborts and keeps the previous database.">Refresh 国服 database</button>
+      <label class="ck" data-tip="Re-downloads the data-table column layout (dat-schema) from the internet before extracting. Tick this only if a big patch changed the table format and extraction starts failing or counts look off — otherwise the cached schema is used."><input type="checkbox" id="ckSchema"> re-download schema (after big patches)</label>
+      <label class="ck" data-tip="Also read your international (Steam) PoE2 install. This maps items by their internal metadata Id so the converter can detect renames: if an item was renamed in 国服, its name is swapped instead of removed (cross-over). Leave on if the international client is installed."><input type="checkbox" id="ckIntl" checked> include international install (enables cross-over)</label>
+    </div>
+    <pre id="dblog" style="display:none"></pre>
+  </div>
+
+  <div class="card"><h2>2 · Convert filters</h2>
+    <p class="mut" style="margin:0 0 8px;font-size:12px">Sources found in your input folder. Loose files get the <span class="mono">_cn</span> suffix; files in a subfolder or inside a <span class="mono">FilterBlade X.zip</span> get a <span class="mono">_X</span> suffix and are written under <span class="mono">output\X\</span>.</p>
+    <div id="flist" class="flist mut">loading…</div>
+    <div class="row">
+      <button id="btnConvert" data-tip="Rewrites each ticked source so it loads in the 国服 client: removes base types 国服 genuinely lacks, fixes capitalisation, and remaps renamed items. Writes the result to the output folder, validates it, and reports exactly what changed.">Convert selected</button>
+      <label class="ck" data-tip="After converting, copy each output into your PoE2 'My Games' folder so it shows up in the in-game filter dropdown. Copies are flat (no subfolders), since the game lists filters from one folder."><input type="checkbox" id="ckCopy" checked> copy outputs to game folder</label>
+    </div>
+    <div id="results"></div>
+  </div>
+
+  <div class="card"><h2>3 · Cross-over report <span class="mut" style="text-transform:none;letter-spacing:0">— items whose English name differs between clients (same metadata Id)</span></h2>
+    <button id="btnXover" class="sec" data-tip="Lists every item whose English name differs between the international and 国服 clients, matched by language-independent metadata Id. These are exactly the items the converter auto-remaps instead of removing. Needs the international install enabled in step 1.">Show renames</button>
+    <div id="xover"></div>
+  </div>
+
+  <div class="card"><h2>Settings</h2>
+    <details><summary>Paths &amp; options</summary>
+      <label class="fld">China (国服 / WeGame) install folder</label>
+      <input type="text" id="cfg_cnInstall" data-tip="The China (WeGame/腾讯) PoE2 install folder — the one that contains a 'Bundles2' subfolder. The item database is datamined from here. This is the most important path.">
+      <label class="fld">International install folder (optional — for cross-over remap)</label>
+      <input type="text" id="cfg_intlInstall" data-tip="Your international (Steam/standalone) PoE2 install folder. Optional. Used only to map items by metadata Id so renamed items can be remapped rather than dropped.">
+      <label class="fld">Input folder (drop your FilterBlade exports here)</label>
+      <input type="text" id="cfg_inputFolder" data-tip="Where you put filters to convert. Three layouts work: a loose .filter (→ _cn), a .filter inside a subfolder like 'Dark Mode' (→ _Dark Mode), or a FilterBlade download .zip such as 'FilterBlade Zen.zip' (each filter inside → _Zen).">
+      <label class="fld">Output folder (converted filters written here)</label>
+      <input type="text" id="cfg_outputFolder" data-tip="Where converted filters are written. Subfolders/zip variants are mirrored here (e.g. output\Dark Mode\). The game copies (step 2) are placed flat in the game folder regardless.">
+      <label class="fld">Game filter folder (outputs copied here)</label>
+      <input type="text" id="cfg_gameFolder" data-tip="Your PoE2 'My Games' folder. When 'copy outputs to game folder' is ticked, converted filters are copied here so the game can list them in Options → UI.">
+      <label class="fld">Output suffix (loose files only)</label>
+      <input type="text" id="cfg_outputSuffix" data-tip="Suffix added to filters placed directly in the input root (default _cn). Files inside a named subfolder or zip use that variant's name instead (e.g. _Zen), so this only affects loose files.">
+      <div class="row" style="margin-top:12px"><button id="btnSave" class="sec" data-tip="Save these paths to tool\data\config.json. Both the web UI and the Update-FilterBlade-CN.bat one-shot updater read the same file.">Save settings</button><span id="savemsg" class="mut"></span></div>
+    </details>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), api=(p,m,b)=>fetch(p,{method:m||'GET',headers:{'Content-Type':'application/json'},body:b?JSON.stringify(b):undefined}).then(r=>r.json());
+let STATE={};
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const escAttr=s=>esc(s).replace(/"/g,'&quot;');
+
+// ---- floating tooltip engine ----
+const tip=document.createElement('div'); tip.id='tip'; document.body.appendChild(tip);
+function showTip(el){const t=el.getAttribute('data-tip'); if(!t)return; tip.textContent=t; tip.classList.add('show');
+  const r=el.getBoundingClientRect(), w=tip.offsetWidth, h=tip.offsetHeight;
+  let left=Math.max(8,Math.min(r.left, innerWidth-w-8));
+  let top=r.bottom+8; if(top+h>innerHeight-8) top=Math.max(8, r.top-h-8);
+  tip.style.left=left+'px'; tip.style.top=top+'px';}
+function hideTip(){tip.classList.remove('show');}
+document.addEventListener('mouseover',e=>{const el=e.target.closest('[data-tip]'); if(el)showTip(el);});
+document.addEventListener('mouseout',e=>{const el=e.target.closest('[data-tip]'); if(el&&!el.contains(e.relatedTarget))hideTip();});
+document.addEventListener('mousedown',hideTip); window.addEventListener('scroll',hideTip,true); window.addEventListener('resize',hideTip);
+
+function renderDb(){
+  const m=STATE.meta;
+  $('#dbstatus').innerHTML = STATE.hasDb
+    ? `Database ready · <b>${m?.cnNames??'?'}</b> base-type names, <b>${m?.cnRows??'?'}</b> rows · schema ${m?.schemaVersion??'?'} · cross-over ${STATE.hasIntl?'<span class="tag ok">ON</span>':'<span class="tag warn">off (no intl)</span>'} · extracted ${m?.when?new Date(m.when).toLocaleString():'?'}`
+    : '<span class="tag bad">No database yet</span> — click "Refresh 国服 database".';
+}
+const ICON={loose:'📄',folder:'📁',zip:'📦'};
+function renderFilters(){
+  const fs=STATE.filters||[];
+  if(!fs.length){$('#flist').innerHTML='<span class="mut">No filters found. Drop FilterBlade exports (a .filter, a subfolder of them, or a FilterBlade .zip) into the input folder.</span>';return;}
+  $('#flist').innerHTML=fs.map(f=>{
+    if(f.kind==='ziperr') return `<div class="frow out" data-tip="${escAttr('This .zip could not be read: '+(f.display||''))}"><span class="fname">📦 ${esc(f.display)}</span><span class="badges">unreadable zip</span></div>`;
+    const variantLabel=f.variant?('variant "'+f.variant+'"'):'root → '+(STATE.config.outputSuffix||'_cn');
+    const badges=[f.style&&('STYLE '+esc(f.style)),f.type&&esc(f.type)].filter(Boolean).join(' · ');
+    const tipText=`Source type: ${f.source}\n${variantLabel}\nStyle: ${f.style||'?'} · ${f.type||'?'}${f.version?' · v'+f.version:''}\n→ output: ${f.outName}${f.variant?'   (in output\\'+f.variant+'\\)':''}`;
+    return `<label class="frow" data-tip="${escAttr(tipText)}">
+      <input type="checkbox" class="fck" value="${escAttr(f.key)}" checked>
+      <span class="fname">${ICON[f.source]||'📄'} ${esc(f.display)}</span>
+      <span class="badges">→ ${esc(f.outName)}${badges?' · '+badges:''}</span></label>`;
+  }).join('');
+}
+function fmtMap(o){const k=Object.keys(o||{});return k.length?k.map(x=>`<div class="mono">${esc(x)}${o[x]&&o[x]!==1?`  <span class="mut">[${esc(o[x])}]</span>`:''}</div>`).join(''):'<span class="mut">none</span>';}
+function renderResults(rs){
+  $('#results').innerHTML=rs.map(r=>{
+    const removedN=Object.values(r.removed||{}).reduce((a,b)=>a+b,0);
+    return `<div class="res ${r.ok?'':'bad'}">
+      <div class="row"><b>${esc(r.input)}</b> → <span class="mono">${esc(r.output)}</span>
+        <span class="tag ${r.ok?'ok':'bad'}">${r.ok?'VALID — loads clean':'STILL INVALID'}</span>
+        ${r.classMiss.length?`<span class="tag warn">${r.classMiss.length} class warning(s)</span>`:''}
+        ${r.copied&&!String(r.copied).startsWith('copy failed')?'<span class="tag ok">copied to game</span>':''}</div>
+      <div class="mut" style="margin:6px 0">${r.linesChanged} BaseType line(s) changed · ${removedN} value(s) removed · ${Object.keys(r.remapped||{}).length} remapped · ${r.normalized.length} case-fixed · ${r.droppedBlocks} rule(s) dropped</div>
+      <table>
+        <tr><td style="width:140px" data-tip="Base types whose metadata Id does not exist in 国服 at all — genuinely absent, so the value was stripped.">Removed (absent)</td><td>${fmtMap(r.removed)}</td></tr>
+        <tr><td data-tip="Same item (same metadata Id) but a different English name in 国服 — the value was swapped to the 国服 name instead of being removed.">Cross-over remapped</td><td>${fmtMap(r.remapped)}</td></tr>
+        <tr><td data-tip="Exists in 国服 but with different capitalisation — rewritten to the 国服 spelling (safe whether or not matching is case-sensitive).">Case-normalized</td><td>${r.normalized.length?r.normalized.map(x=>`<div class="mono">${esc(x)}</div>`).join(''):'<span class="mut">none</span>'}</td></tr>
+        ${r.classMiss.length?`<tr><td data-tip="Class names in the filter not present in 国服's ItemClasses. We never modify Class lines; this is a heads-up only.">Class not in 国服</td><td>${r.classMiss.map(esc).join(', ')}</td></tr>`:''}
+        ${!r.ok?`<tr><td>Validation misses</td><td class="mono">exact: ${esc(JSON.stringify(r.validateExactMiss))}<br>substring: ${esc(JSON.stringify(r.validateSubMiss))}</td></tr>`:''}
+        ${r.copied?`<tr><td>Copied to</td><td class="mono">${esc(r.copied)}</td></tr>`:''}
+      </table></div>`;
+  }).join('');
+}
+async function refreshState(){STATE=await api('/api/state');renderDb();renderFilters();
+  for(const k of ['cnInstall','intlInstall','inputFolder','outputFolder','gameFolder','outputSuffix'])$('#cfg_'+k).value=STATE.config[k]||'';}
+
+$('#btnRefresh').onclick=async()=>{const b=$('#btnRefresh');b.disabled=true;b.textContent='Extracting…';$('#dblog').style.display='block';$('#dblog').textContent='Working… (decompressing bundles, this can take ~10-30s)';
+  try{const r=await api('/api/refresh-db','POST',{forceSchema:$('#ckSchema').checked,includeIntl:$('#ckIntl').checked});
+    $('#dblog').textContent=(r.error?('ERROR: '+r.error):r.log.join('\n'));await refreshState();}
+  catch(e){$('#dblog').textContent='ERROR: '+e.message;}
+  b.disabled=false;b.textContent='Refresh 国服 database';};
+
+$('#btnConvert').onclick=async()=>{const files=[...document.querySelectorAll('.fck:checked')].map(c=>c.value);
+  if(!files.length){alert('Select at least one filter.');return;}
+  const b=$('#btnConvert');b.disabled=true;b.textContent='Converting…';
+  try{const r=await api('/api/convert','POST',{files,copyToGame:$('#ckCopy').checked});
+    if(r.error){$('#results').innerHTML='<div class="res bad">'+esc(r.error)+'</div>';}else{renderResults(r.results);await refreshState();}}
+  catch(e){$('#results').innerHTML='<div class="res bad">'+esc(e.message)+'</div>';}
+  b.disabled=false;b.textContent='Convert selected';};
+
+$('#btnXover').onclick=async()=>{const r=await api('/api/crossover');
+  if(!r.available){$('#xover').innerHTML='<p class="mut">'+(r.note||'Cross-over needs the international install. Enable it in the database step.')+'</p>';return;}
+  if(!r.renames.length){$('#xover').innerHTML='<p class="mut">No renames — every shared item has the same English name in both clients. (Nothing needs remapping right now.)</p>';return;}
+  $('#xover').innerHTML='<table><tr><th>metadata Id</th><th>international</th><th>国服</th></tr>'+
+    r.renames.map(x=>`<tr><td class="mono">${esc(x.id)}</td><td>${esc(x.intl)}</td><td>${esc(x.cn)}</td></tr>`).join('')+'</table>';};
+
+$('#btnSave').onclick=async()=>{const cfg={};for(const k of ['cnInstall','intlInstall','inputFolder','outputFolder','gameFolder','outputSuffix'])cfg[k]=$('#cfg_'+k).value.trim();
+  const r=await api('/api/config','POST',cfg);STATE.config=r.config;STATE.filters=r.filters;renderFilters();$('#savemsg').textContent='saved ✓';setTimeout(()=>$('#savemsg').textContent='',2000);};
+
+refreshState();
+</script></body></html>

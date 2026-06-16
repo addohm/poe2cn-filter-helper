@@ -1,0 +1,1008 @@
+# BASE TYPE PROBE - find the base types the China client lacks.
+# Load this; on error 'no match for <X>', note <X>, delete its line, reload.
+# Repeat until '读取成功'. Valid bases never error, so one reload per missing item.
+# (251 suspect base types)
+
+Show
+	BaseType == "Abyss Tablet"
+	SetFontSize 30
+
+Show
+	BaseType == "Adherent Bow"
+	SetFontSize 30
+
+Show
+	BaseType == "Adherent's Raiment"
+	SetFontSize 30
+
+Show
+	BaseType == "Adorned Wraps"
+	SetFontSize 30
+
+Show
+	BaseType == "Aegis Quarterstaff"
+	SetFontSize 30
+
+Show
+	BaseType == "Albino Rhoa Feather"
+	SetFontSize 30
+
+Show
+	BaseType == "Altar Robe"
+	SetFontSize 30
+
+Show
+	BaseType == "Amethyst Charm"
+	SetFontSize 30
+
+Show
+	BaseType == "An Audience with the King"
+	SetFontSize 30
+
+Show
+	BaseType == "Ancestral Mail"
+	SetFontSize 30
+
+Show
+	BaseType == "Ancient Cuffs"
+	SetFontSize 30
+
+Show
+	BaseType == "Ancient Mitts"
+	SetFontSize 30
+
+Show
+	BaseType == "Antidote Charm"
+	SetFontSize 30
+
+Show
+	BaseType == "Antler Focus"
+	SetFontSize 30
+
+Show
+	BaseType == "Anvil Maul"
+	SetFontSize 30
+
+Show
+	BaseType == "Apostle Leggings"
+	SetFontSize 30
+
+Show
+	BaseType == "Arrayed Focus"
+	SetFontSize 30
+
+Show
+	BaseType == "Avian Mask"
+	SetFontSize 30
+
+Show
+	BaseType == "Avian Targe"
+	SetFontSize 30
+
+Show
+	BaseType == "Bandit Mace"
+	SetFontSize 30
+
+Show
+	BaseType == "Baroque Gloves"
+	SetFontSize 30
+
+Show
+	BaseType == "Baroque Targe"
+	SetFontSize 30
+
+Show
+	BaseType == "Bastion Sabatons"
+	SetFontSize 30
+
+Show
+	BaseType == "Bladed Quarterstaff"
+	SetFontSize 30
+
+Show
+	BaseType == "Bleak Crossbow"
+	SetFontSize 30
+
+Show
+	BaseType == "Bound Cuffs"
+	SetFontSize 30
+
+Show
+	BaseType == "Branched Spear"
+	SetFontSize 30
+
+Show
+	BaseType == "Breach Tablet"
+	SetFontSize 30
+
+Show
+	BaseType == "Breachlord's Rift"
+	SetFontSize 30
+
+Show
+	BaseType == "Broadhead Quiver"
+	SetFontSize 30
+
+Show
+	BaseType == "Buckled Wraps"
+	SetFontSize 30
+
+Show
+	BaseType == "Bulwark Greaves"
+	SetFontSize 30
+
+Show
+	BaseType == "Bulwark Tower Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Burnished Gauntlets"
+	SetFontSize 30
+
+Show
+	BaseType == "Cabalist Helm"
+	SetFontSize 30
+
+Show
+	BaseType == "Carved Greaves"
+	SetFontSize 30
+
+Show
+	BaseType == "Cassis Helm"
+	SetFontSize 30
+
+Show
+	BaseType == "Catalyst"
+	SetFontSize 30
+
+Show
+	BaseType == "Cavalry Bow"
+	SetFontSize 30
+
+Show
+	BaseType == "Ceremonial Robe"
+	SetFontSize 30
+
+Show
+	BaseType == "Champion Cuirass"
+	SetFontSize 30
+
+Show
+	BaseType == "Champion Helm"
+	SetFontSize 30
+
+Show
+	BaseType == "Closed Helm"
+	SetFontSize 30
+
+Show
+	BaseType == "Colossal"
+	SetFontSize 30
+
+Show
+	BaseType == "Commander Gauntlets"
+	SetFontSize 30
+
+Show
+	BaseType == "Condemned Talisman"
+	SetFontSize 30
+
+Show
+	BaseType == "Crest Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Crucible Tower Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Cruel Talisman"
+	SetFontSize 30
+
+Show
+	BaseType == "Cryptic Helm"
+	SetFontSize 30
+
+Show
+	BaseType == "Cultist Gauntlets"
+	SetFontSize 30
+
+Show
+	BaseType == "Death Mantle"
+	SetFontSize 30
+
+Show
+	BaseType == "Decorated Helm"
+	SetFontSize 30
+
+Show
+	BaseType == "Deerstalker Hood"
+	SetFontSize 30
+
+Show
+	BaseType == "Delirium Tablet"
+	SetFontSize 30
+
+Show
+	BaseType == "Detailed Mitts"
+	SetFontSize 30
+
+Show
+	BaseType == "Disintegrating Maul"
+	SetFontSize 30
+
+Show
+	BaseType == "Divine Crown"
+	SetFontSize 30
+
+Show
+	BaseType == "Djinn Barya"
+	SetFontSize 30
+
+Show
+	BaseType == "Dousing Charm"
+	SetFontSize 30
+
+Show
+	BaseType == "Dreaming Quarterstaff"
+	SetFontSize 30
+
+Show
+	BaseType == "Druidic Crown"
+	SetFontSize 30
+
+Show
+	BaseType == "Dunerunner Sandals"
+	SetFontSize 30
+
+Show
+	BaseType == "Elegant Crossbow"
+	SetFontSize 30
+
+Show
+	BaseType == "Elegant Greathelm"
+	SetFontSize 30
+
+Show
+	BaseType == "Elegant Greaves"
+	SetFontSize 30
+
+Show
+	BaseType == "Elegant Plate"
+	SetFontSize 30
+
+Show
+	BaseType == "Elegant Slippers"
+	SetFontSize 30
+
+Show
+	BaseType == "Engraved Crossbow"
+	SetFontSize 30
+
+Show
+	BaseType == "Essence"
+	SetFontSize 30
+
+Show
+	BaseType == "Faithful Leggings"
+	SetFontSize 30
+
+Show
+	BaseType == "Fang Talisman"
+	SetFontSize 30
+
+Show
+	BaseType == "Feathered Mitts"
+	SetFontSize 30
+
+Show
+	BaseType == "Flared Boots"
+	SetFontSize 30
+
+Show
+	BaseType == "Flax Sandals"
+	SetFontSize 30
+
+Show
+	BaseType == "Flexed Crossbow"
+	SetFontSize 30
+
+Show
+	BaseType == "Forked Spear"
+	SetFontSize 30
+
+Show
+	BaseType == "Fortress Sabatons"
+	SetFontSize 30
+
+Show
+	BaseType == "Fury Talisman"
+	SetFontSize 30
+
+Show
+	BaseType == "Gargantuan"
+	SetFontSize 30
+
+Show
+	BaseType == "Gargantuan Life Flask"
+	SetFontSize 30
+
+Show
+	BaseType == "Giant"
+	SetFontSize 30
+
+Show
+	BaseType == "Gilded Vestments"
+	SetFontSize 30
+
+Show
+	BaseType == "Gleaming Cuffs"
+	SetFontSize 30
+
+Show
+	BaseType == "Glowering Crest Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Gold Gloves"
+	SetFontSize 30
+
+Show
+	BaseType == "Golden Mail"
+	SetFontSize 30
+
+Show
+	BaseType == "Goldworked Tower Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Grand"
+	SetFontSize 30
+
+Show
+	BaseType == "Grand Cuisses"
+	SetFontSize 30
+
+Show
+	BaseType == "Grand Visage"
+	SetFontSize 30
+
+Show
+	BaseType == "Greater"
+	SetFontSize 30
+
+Show
+	BaseType == "Grounding Charm"
+	SetFontSize 30
+
+Show
+	BaseType == "Guardian Bow"
+	SetFontSize 30
+
+Show
+	BaseType == "Guardian Quarterstaff"
+	SetFontSize 30
+
+Show
+	BaseType == "Guardian Spear"
+	SetFontSize 30
+
+Show
+	BaseType == "Hallowed Crown"
+	SetFontSize 30
+
+Show
+	BaseType == "Hatungo Garb"
+	SetFontSize 30
+
+Show
+	BaseType == "Hawker's Jacket"
+	SetFontSize 30
+
+Show
+	BaseType == "Heartcarver Mantle"
+	SetFontSize 30
+
+Show
+	BaseType == "Heavy Greathammer"
+	SetFontSize 30
+
+Show
+	BaseType == "Heavy Plate"
+	SetFontSize 30
+
+Show
+	BaseType == "Heraldric Tower Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Heroic Armour"
+	SetFontSize 30
+
+Show
+	BaseType == "Howling Talisman"
+	SetFontSize 30
+
+Show
+	BaseType == "Idol"
+	SetFontSize 30
+
+Show
+	BaseType == "Inquisitor Crown"
+	SetFontSize 30
+
+Show
+	BaseType == "Iron Greaves"
+	SetFontSize 30
+
+Show
+	BaseType == "Ironwood Shortbow"
+	SetFontSize 30
+
+Show
+	BaseType == "Itinerant Jacket"
+	SetFontSize 30
+
+Show
+	BaseType == "Jagged Spear"
+	SetFontSize 30
+
+Show
+	BaseType == "Jewelled Gloves"
+	SetFontSize 30
+
+Show
+	BaseType == "Jungle Tiara"
+	SetFontSize 30
+
+Show
+	BaseType == "Kalguuran Cuffs"
+	SetFontSize 30
+
+Show
+	BaseType == "Kalguuran Forgehammer"
+	SetFontSize 30
+
+Show
+	BaseType == "Knightly Mitts"
+	SetFontSize 30
+
+Show
+	BaseType == "Layered Vest"
+	SetFontSize 30
+
+Show
+	BaseType == "Legacy of"
+	SetFontSize 30
+
+Show
+	BaseType == "Lesser"
+	SetFontSize 30
+
+Show
+	BaseType == "Liquid "
+	SetFontSize 30
+
+Show
+	BaseType == "Lizardscale Coat"
+	SetFontSize 30
+
+Show
+	BaseType == "Lumbering Talisman"
+	SetFontSize 30
+
+Show
+	BaseType == "Lunar Quarterstaff"
+	SetFontSize 30
+
+Show
+	BaseType == "Magus Tiara"
+	SetFontSize 30
+
+Show
+	BaseType == "Mammoth Targe"
+	SetFontSize 30
+
+Show
+	BaseType == "Mantled Mail"
+	SetFontSize 30
+
+Show
+	BaseType == "Masked Greathelm"
+	SetFontSize 30
+
+Show
+	BaseType == "Medium"
+	SetFontSize 30
+
+Show
+	BaseType == "Militant Bow"
+	SetFontSize 30
+
+Show
+	BaseType == "Molten Hammer"
+	SetFontSize 30
+
+Show
+	BaseType == "Morning Star"
+	SetFontSize 30
+
+Show
+	BaseType == "Necrotic Catalyst"
+	SetFontSize 30
+
+Show
+	BaseType == "Nettle Talisman"
+	SetFontSize 30
+
+Show
+	BaseType == "Noble Greathelm"
+	SetFontSize 30
+
+Show
+	BaseType == "Noble Sabatons"
+	SetFontSize 30
+
+Show
+	BaseType == "Noble Tower Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Occultist Mantle"
+	SetFontSize 30
+
+Show
+	BaseType == "Olroth's Reliquary Key"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen "
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of Answered Prayers"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of Bartering"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of Chaotic Monsters"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of Dextral Necromancy"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of Gambling"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of Greater Exaltation"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of Resurgence"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of the Blackblooded"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of the Blessed"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of the Liege"
+	SetFontSize 30
+
+Show
+	BaseType == "Omen of the Sovereign"
+	SetFontSize 30
+
+Show
+	BaseType == "Orichalcum Spear"
+	SetFontSize 30
+
+Show
+	BaseType == "Origin Cradle"
+	SetFontSize 30
+
+Show
+	BaseType == "Origin Spark"
+	SetFontSize 30
+
+Show
+	BaseType == "Ornate Cuffs"
+	SetFontSize 30
+
+Show
+	BaseType == "Ornate Greaves"
+	SetFontSize 30
+
+Show
+	BaseType == "Ornate Mitts"
+	SetFontSize 30
+
+Show
+	BaseType == "Ornate Plate"
+	SetFontSize 30
+
+Show
+	BaseType == "Overseer Tablet"
+	SetFontSize 30
+
+Show
+	BaseType == "Paragon Greathelm"
+	SetFontSize 30
+
+Show
+	BaseType == "Pariah Mask"
+	SetFontSize 30
+
+Show
+	BaseType == "Pauascale Gloves"
+	SetFontSize 30
+
+Show
+	BaseType == "Pelage Targe"
+	SetFontSize 30
+
+Show
+	BaseType == "Perfect Flux"
+	SetFontSize 30
+
+Show
+	BaseType == "Plated Mace"
+	SetFontSize 30
+
+Show
+	BaseType == "Quartered Crest Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Rain of Blades"
+	SetFontSize 30
+
+Show
+	BaseType == "Reefsteel Greaves"
+	SetFontSize 30
+
+Show
+	BaseType == "Refined Bracers"
+	SetFontSize 30
+
+Show
+	BaseType == "Refined Breach Ring"
+	SetFontSize 30
+
+Show
+	BaseType == "Refined Necrotic Catalyst"
+	SetFontSize 30
+
+Show
+	BaseType == "Revered Vestments"
+	SetFontSize 30
+
+Show
+	BaseType == "Ritual Tablet"
+	SetFontSize 30
+
+Show
+	BaseType == "Ritualistic Reliquary Key"
+	SetFontSize 30
+
+Show
+	BaseType == "River Raiment"
+	SetFontSize 30
+
+Show
+	BaseType == "Roaring Talisman"
+	SetFontSize 30
+
+Show
+	BaseType == "Royal Tower Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Ruby Charm"
+	SetFontSize 30
+
+Show
+	BaseType == "Rune"
+	SetFontSize 30
+
+Show
+	BaseType == "Runner Vest"
+	SetFontSize 30
+
+Show
+	BaseType == "Sacral Quiver"
+	SetFontSize 30
+
+Show
+	BaseType == "Saintly Crown"
+	SetFontSize 30
+
+Show
+	BaseType == "Sandsworn Tiara"
+	SetFontSize 30
+
+Show
+	BaseType == "Sapphire Charm"
+	SetFontSize 30
+
+Show
+	BaseType == "Seaglass Spear"
+	SetFontSize 30
+
+Show
+	BaseType == "Seastorm Mantle"
+	SetFontSize 30
+
+Show
+	BaseType == "Sekheman Crest Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Serpentscale Boots"
+	SetFontSize 30
+
+Show
+	BaseType == "Serrated Quiver"
+	SetFontSize 30
+
+Show
+	BaseType == "Shamanistic Leggings"
+	SetFontSize 30
+
+Show
+	BaseType == "Shrouded Mail"
+	SetFontSize 30
+
+Show
+	BaseType == "Smooth Quarterstaff"
+	SetFontSize 30
+
+Show
+	BaseType == "Smuggler Coat"
+	SetFontSize 30
+
+Show
+	BaseType == "Soaring Spear"
+	SetFontSize 30
+
+Show
+	BaseType == "Soul Core"
+	SetFontSize 30
+
+Show
+	BaseType == "Spiked Bracers"
+	SetFontSize 30
+
+Show
+	BaseType == "Spined Bracers"
+	SetFontSize 30
+
+Show
+	BaseType == "Spiny Talisman"
+	SetFontSize 30
+
+Show
+	BaseType == "Spired Greathelm"
+	SetFontSize 30
+
+Show
+	BaseType == "Spiritbone Crown"
+	SetFontSize 30
+
+Show
+	BaseType == "Staunching Charm"
+	SetFontSize 30
+
+Show
+	BaseType == "Steelmail Gauntlets"
+	SetFontSize 30
+
+Show
+	BaseType == "Steelpoint Shoes"
+	SetFontSize 30
+
+Show
+	BaseType == "Stone Cuirass"
+	SetFontSize 30
+
+Show
+	BaseType == "Stone Targe"
+	SetFontSize 30
+
+Show
+	BaseType == "Stone Tower Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Stout Crossbow"
+	SetFontSize 30
+
+Show
+	BaseType == "Strife Pick"
+	SetFontSize 30
+
+Show
+	BaseType == "Structured Hammer"
+	SetFontSize 30
+
+Show
+	BaseType == "Studded Boots"
+	SetFontSize 30
+
+Show
+	BaseType == "Tangmazu's Reliquary Key"
+	SetFontSize 30
+
+Show
+	BaseType == "Targe"
+	SetFontSize 30
+
+Show
+	BaseType == "Tattered Robe"
+	SetFontSize 30
+
+Show
+	BaseType == "Tenebrous Crown"
+	SetFontSize 30
+
+Show
+	BaseType == "Test of Cunning Barya"
+	SetFontSize 30
+
+Show
+	BaseType == "Test of Strength Barya"
+	SetFontSize 30
+
+Show
+	BaseType == "Test of Time Barya"
+	SetFontSize 30
+
+Show
+	BaseType == "Test of Will Barya"
+	SetFontSize 30
+
+Show
+	BaseType == "Thane Mail"
+	SetFontSize 30
+
+Show
+	BaseType == "The Arbiter's Reliquary Key"
+	SetFontSize 30
+
+Show
+	BaseType == "The Runebinder's Alloy"
+	SetFontSize 30
+
+Show
+	BaseType == "The Runefather's Alloy"
+	SetFontSize 30
+
+Show
+	BaseType == "The Trialmaster's Reliquary Key"
+	SetFontSize 30
+
+Show
+	BaseType == "Time-Lost Diamond"
+	SetFontSize 30
+
+Show
+	BaseType == "Topaz Charm"
+	SetFontSize 30
+
+Show
+	BaseType == "Tower Shield"
+	SetFontSize 30
+
+Show
+	BaseType == "Trailblazer Armour"
+	SetFontSize 30
+
+Show
+	BaseType == "Transcendent"
+	SetFontSize 30
+
+Show
+	BaseType == "Transcendent Alloy"
+	SetFontSize 30
+
+Show
+	BaseType == "Transcendent Mana Flask"
+	SetFontSize 30
+
+Show
+	BaseType == "Treerunner Shoes"
+	SetFontSize 30
+
+Show
+	BaseType == "Twin Crossbow"
+	SetFontSize 30
+
+Show
+	BaseType == "Ultimate"
+	SetFontSize 30
+
+Show
+	BaseType == "Utzaal Cuirass"
+	SetFontSize 30
+
+Show
+	BaseType == "Vaal Greaves"
+	SetFontSize 30
+
+Show
+	BaseType == "Vaal Mitts"
+	SetFontSize 30
+
+Show
+	BaseType == "Venerable Defender"
+	SetFontSize 30
+
+Show
+	BaseType == "Vermeil Circlet"
+	SetFontSize 30
+
+Show
+	BaseType == "Veteran Sabatons"
+	SetFontSize 30
+
+Show
+	BaseType == "Voodoo Focus"
+	SetFontSize 30
+
+Show
+	BaseType == "Wardbound Minions"
+	SetFontSize 30
+
+Show
+	BaseType == "Warded Helm"
+	SetFontSize 30
+
+Show
+	BaseType == "Warlock Leggings"
+	SetFontSize 30
+
+Show
+	BaseType == "Warmonger Greathelm"
+	SetFontSize 30
+
+Show
+	BaseType == "Waxing Quarterstaff"
+	SetFontSize 30
+
+Show
+	BaseType == "Weaver Leggings"
+	SetFontSize 30
+
+Show
+	BaseType == "Wingbeat Talisman"
+	SetFontSize 30
+
+Show
+	BaseType == "Wrapped Cap"
+	SetFontSize 30
+
+Show
+	BaseType == "Wrath Sceptre"
+	SetFontSize 30
+
+Show
+	BaseType == "Xesht's Reliquary Key"
+	SetFontSize 30
+
+Show
+	BaseType == "Zarokh's Reliquary Key"
+	SetFontSize 30
+
+Show
+	BaseType == "Zealot Gauntlets"
+	SetFontSize 30

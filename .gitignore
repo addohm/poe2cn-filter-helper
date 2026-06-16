@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Local user config (paths differ per machine; copy from config.example.json)
+/config.json
+
+# Maintainer Node runtime (recreate with: cd maintainer && npm install; portable node is large)
+/maintainer/node/
+/maintainer/node_modules/
+
+# Regenerated cache
+/data/schema.cache.json
+
+# User filters in / out (your own exports + generated outputs are not part of the repo)
+/filters/input/*
+/filters/output/*
+!/filters/input/.gitkeep
+!/filters/output/.gitkeep
+
+# Stray downloads
+/Git-*.exe
+
+# Editor / assistant local state
+/.claude/
+
+# OS
+.DS_Store
+Thumbs.db
